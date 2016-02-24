@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>Reach Donar</display-name>
+   
+ 
+  
+  <servlet>
+    <servlet-name>ProfileController</servlet-name>
+    <servlet-class>controllers.ProfileController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProfileController</servlet-name>
+    <url-pattern>/ProfileController</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+   <servlet>
+    <description></description>
+    <servlet-name>BloodRequest</servlet-name>
+    <servlet-class>controllers.BloodRequest</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BloodRequest</servlet-name>
+    <url-pattern>/BloodRequest</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+    <servlet-name>Search_Results</servlet-name>
+    <servlet-class>controllers.Get_Results</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Search_Results</servlet-name>
+    <url-pattern>/search_results.jsp</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+ <!-- Prakash --> 
+    <servlet>
+    <description></description>
+    <display-name>LoginController</display-name>
+    <servlet-name>LoginController</servlet-name>
+    <servlet-class>controllers.LoginController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginController</servlet-name>
+    <url-pattern>/LoginController</url-pattern>
+  </servlet-mapping>
+   <servlet>
+    <description></description>
+    <display-name>RegController</display-name>
+    <servlet-name>RegController</servlet-name>
+    <servlet-class>controllers.RegController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RegController</servlet-name>
+    <url-pattern>/RegController</url-pattern>
+  </servlet-mapping>
+   <servlet>
+    <description></description>
+    <display-name>ChangePwdController</display-name>
+    <servlet-name>ChangePwdController</servlet-name>
+    <servlet-class>controllers.ChangePwdController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ChangePwdController</servlet-name>
+    <url-pattern>/ChangePwdController</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>Suggest_Controller</display-name>
+    <servlet-name>Suggest_Controller</servlet-name>
+    <servlet-class>controllers.Suggest_Controller</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Suggest_Controller</servlet-name>
+    <url-pattern>/Suggest_Controller</url-pattern>
+  </servlet-mapping>
+  <!--  -->
+
+
+<!--  Ganga -->
+  <servlet>
+    <servlet-name>NotificationController</servlet-name>
+    <servlet-class>controllers.NotificationController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>NotificationController</servlet-name>
+    <url-pattern>/NotificationController</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>RequestUpdateController</servlet-name>
+    <servlet-class>controllers.RequestUpdateController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RequestUpdateController</servlet-name>
+    <url-pattern>/RequestUpdateController</url-pattern>
+  </servlet-mapping>
+<!--  Ganga -->
+
+  
+</web-app>
