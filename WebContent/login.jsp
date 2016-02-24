@@ -22,7 +22,7 @@
 		 -->
 <div style="width:50%;margin-left:auto;margin-right:auto;box-shadow:0px 2px 2px grey;margin-top:5%;padding-bottom:10px;min-width:500px">
 	<blockquote>
-          	<p>Login Here <span class="icon-login"></span></p>
+          	<p>Login Here Ok<span class="icon-login"></span></p>
         </blockquote>	
 	   <form class="form-horizontal" action="LoginController" method="POST" id="myForm">
       <div class="control-group">
