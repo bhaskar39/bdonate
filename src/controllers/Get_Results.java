@@ -32,7 +32,7 @@ public class Get_Results extends HttpServlet {
 		int range=25;
 		ArrayList<String> places=kk.get_NearestPlaces(arr[0],arr[1],range);
 		for(String s : places){
-			System.out.println(s);
+			
 		}
 		/*
 		Search_Results res= new Search_Results();
