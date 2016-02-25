@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bos.User;
+import models.Get_NearPlace;
 import models.Search_Results;
 
 public class Get_Results extends HttpServlet {
@@ -26,7 +27,14 @@ public class Get_Results extends HttpServlet {
 		String blood_group = request.getParameter("blood_group");
 		String location = request.getParameter("location");
 		//System.out.println(blood_group+location);
-		
+		String[] arr =location.split(",");
+		Get_NearPlace kk = new Get_NearPlace();
+		int range=25;
+		ArrayList<String> places=kk.get_NearestPlaces(arr[0],arr[1],range);
+		for(String s : places){
+			System.out.println(s);
+		}
+		/*
 		Search_Results res= new Search_Results();
 		ArrayList<User> results = res.Search_Query(blood_group,location);
 		RequestDispatcher rd = request.getRequestDispatcher("print_search_results.jsp");
@@ -35,7 +43,7 @@ public class Get_Results extends HttpServlet {
         rd.forward(request, response);
         
 		
-		/*
+		
 		Iterator<User> it = results.iterator();
 		while(it.hasNext()){
 			User u1 = it.next();

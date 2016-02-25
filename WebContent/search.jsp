@@ -29,7 +29,10 @@
 							<option value="O-">O-</option>
 							<option value="Any">Any</option>
   		</select>
-  		<input class="span2" id="pac-input" autocomplete="off" style="min-height:50px;width:35%;border-left:0px;" onkeyup="get_suggestions(this.value)"  type="text" placeholder="Search Donars in a Location" />
+<!--    		<input class="span2" id="pac-input" autocomplete="off" style="min-height:50px;width:35%;border-left:0px;" onkeyup="get_suggestions(this.value)"  type="text" placeholder="Search Donars in a Location" />-->
+<input type="text" id="latt" style="display:none">
+<input type="text" id="long" style="display:none">
+		<input class="span2" id="autocomplete" autocomplete="off" style="min-height:50px;width:35%;border-left:0px;"  type="text" placeholder="Search Donars in a Location" />
   		&nbps;&nbps;
   		<button class="btn" type="submit" style="padding:0px;min-height:50px;min-width: 110px;width:15%;background-color: #CA0000;color:#fff;border:0px;border-radius: 5px;">Search Donars</button>
 	</div>
@@ -62,8 +65,28 @@
 	$(document).ready(function(){  
 	    $('.form-inline').on('submit',function(event){
 	       event.preventDefault();
-	       data={"blood_group":$("#blood_group").val(),"location":$("#pac-input").val()};
+	       //data={"blood_group":$("#blood_group").val(),"location":$("#latt").val()+","+$("#long").val()};
+	       data={"blood_group":$("#blood_group").val(),"location":"16.544893,81.521240"};
 	       load_page_post("search_results.jsp","search_results",data) 
 	    });  
 	});
+	
+	function initAutocomplet() {
+		  // Create the autocomplete object, restricting the search to geographical
+		  // location types.
+		  autocomplete = new google.maps.places.Autocomplete(
+		      /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+		      {types: ['geocode']});
+
+		  // When the user selects an address from the dropdown, populate the address
+		  // fields in the form.
+		  autocomplete.addListener('place_changed', fillInAddress);
+		}
+	function fillInAddress() {
+		  // Get the place details from the autocomplete object.
+		  var place = autocomplete.getPlace();
+		  document.getElementById("latt").value=place.geometry.location.lat();
+		  document.getElementById("long").value=place.geometry.location.lng();
+	}
 </script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCFx1Ulkn-qmvA97aj0Qp1CBh_xeC7knc&signed_in=true&libraries=places&callback=initAutocomplete"async defer></script>

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bos.User;
+import models.Marker_Record;
 import models.Register;
 
 
@@ -33,10 +34,14 @@ public class RegController extends HttpServlet {
 		String password = request.getParameter("password");
 		String zipcode = request.getParameter("zipcode");
 		String availability = "true";
+		String lat= request.getParameter("lat");
+		String lng= request.getParameter("lng");
 		
 		RequestDispatcher rd = null;
 
 		Register registration = new Register();
+		Marker_Record md = new Marker_Record(location, address, lat, lng);
+		md.toString();
 		String result = registration.register(name, bloodgroup, gender, dob, mobile, altmobile, email, location, address, password, zipcode, availability);;
 		if (result.equals("success")) {
 			rd = request.getRequestDispatcher("/success.jsp");

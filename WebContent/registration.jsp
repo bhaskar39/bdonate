@@ -19,6 +19,7 @@ table input{
 
 		<div id="reg_body">
 		<form action="RegController" method="POST" name="myForm"" id="my_form">
+		<input type=text style="display:none" id="latt"><input type=text style="display:none" id="long">
 		<table>
 			<tbody>
 			    <tr>
@@ -66,7 +67,7 @@ table input{
 			            <strong>:</strong>
 			        </td>
 			        <td class="tthree">
-			                <div data-date-format="dd-mm-yyyy" data-date="21-02-2012" id="dp3" class="input-append date" data-provide="datepicker">
+			                <div data-date-format="dd-mm-yyyy" data-date="21-02-2016" id="dp3" class="input-append date" data-provide="datepicker">
            					<input type="text" readonly="" value="21-02-2016" name="selected_date" size="16" class="span2">
            					<span class="add-on"><i class="icon-calendar-3"></i></span>
         					</div>
@@ -124,7 +125,7 @@ table input{
 			     		<strong>:</strong>
 			     	</td>
 			     	<td class="tthree">
-			     		<input type="text" name="location"/>
+			     		<input id="autocomplete" placeholder="Enter location or near city" name="location" type="text"></input>
 			     	</td>
 			    </tr>
 			    <tr>
@@ -135,7 +136,7 @@ table input{
 			     		<strong>:</strong>
 			     	</td>
 			     	<td class="tthree">
-			     		<input type="text" name="zipcode"/>
+			     		<input type="text" name="zipcode" id="postal_code" readonly/>
 			     	</td>
 			    </tr>
 			    <tr>
@@ -146,7 +147,8 @@ table input{
 			        	<strong>:</strong>
 			    	</td>
 			    	<td class="tthree">
-			    		<textarea name="address" rows="4" cols="30"></textarea>
+			    		<textarea name="address" id="address" rows="4" cols="30" readonly>
+			    		</textarea>
 			    	</td>
 			    </tr>
 		    	<tr>
@@ -210,7 +212,9 @@ var zipcode = document.forms["myForm"]["zipcode"].value;
 var address = document.forms["myForm"]["address"].value;
 var password = document.forms["myForm"]["password"].value;
 var repassword = document.forms["myForm"]["repassword"].value;
-data={"name":name,"bloodgroup":bloodgroup,"gender":gender,"selected_date":dob,"mobile":mobile,"altmobile":altmobile,"email":email,"location":location,"zipcode":zipcode,"address":address,"password":password};
+var lat= $("#latt").val();
+var lng= $("#long").val();
+data={"name":name,"bloodgroup":bloodgroup,"gender":gender,"selected_date":dob,"mobile":mobile,"altmobile":altmobile,"email":email,"location":location,"zipcode":zipcode,"address":address,"password":password,"lat":lat,"lng":lng};
 
 if (name == null || name == "") {
     alert("Name must be entered");
@@ -280,4 +284,55 @@ load_page_post("RegController","reg_body",data);
 
     });  
 });
+
+
+var componentForm = {
+		  street_number: 'short_name',
+		  route: 'long_name',
+		  locality: 'long_name',
+		  administrative_area_level_1: 'long_name',
+		  country: 'long_name',
+		  postal_code: 'short_name'
+		};
+
+function initAutocomplete() {
+	  // Create the autocomplete object, restricting the search to geographical
+	  // location types.
+	  autocomplete = new google.maps.places.Autocomplete(
+	      /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+	      {types: ['geocode']});
+
+	  // When the user selects an address from the dropdown, populate the address
+	  // fields in the form.
+	  autocomplete.addListener('place_changed', fillInAddress);
+	}
+
+function fillInAddress() {
+	  // Get the place details from the autocomplete object.
+	  var place = autocomplete.getPlace();
+	  dataa="";
+	  
+
+	  // Get each component of the address from the place details
+	  // and fill the corresponding field on the form.
+	  for (var i = 0; i < place.address_components.length; i++) {
+	    var addressType = place.address_components[i].types[0];
+	    if (componentForm[addressType]) {
+	      var val = place.address_components[i][componentForm[addressType]];
+	      //dataa[addressType]=val;
+	      if(addressType=="postal_code"){
+	    	  document.getElementById("postal_code").value=val;
+	      }
+	      dataa+=val+", ";
+	      //document.getElementById(addressType).value = val;
+	    }
+	  }
+	  dataa=dataa.substring(0,dataa.length-1);
+	  document.getElementById("address").innerHTML=dataa;
+	  document.getElementById("latt").value=place.geometry.location.lat();
+	  document.getElementById("long").value=place.geometry.location.lng();
+	}
+
 </script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCFx1Ulkn-qmvA97aj0Qp1CBh_xeC7knc&signed_in=true&libraries=places&callback=initAutocomplete"async defer></script>
