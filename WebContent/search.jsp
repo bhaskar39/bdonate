@@ -89,4 +89,3 @@
 		  document.getElementById("long").value=place.geometry.location.lng();
 	}
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCFx1Ulkn-qmvA97aj0Qp1CBh_xeC7knc&signed_in=true&libraries=places&callback=initAutocomplete"async defer></script>
