@@ -63,7 +63,7 @@ User ss= (User)session.getAttribute("user");
 			});
 		}
 	</script>
-	<div style="width:50%;margin-left:auto;margin-right:auto;box-shadow:0px 2px 2px grey;margin-top:5%;padding-bottom:1px;min-width:500px">
+	<div style="min-width:50%;max-width:65%;margin-left:auto;margin-right:auto;box-shadow:0px 2px 2px grey;margin-top:5%;padding-bottom:1px;min-width:500px">
         <table class='table table-hover  table-striped'>
         	<tr>
         		<th>
@@ -81,7 +81,7 @@ User ss= (User)session.getAttribute("user");
         		</th>
         	</tr>
         	<tr>
-        		<td colspan="2">
+        		<td colspan="3">
         			<BR>
         		</td>
         	</tr>
@@ -175,10 +175,15 @@ User ss= (User)session.getAttribute("user");
 	        		Address
 	        	</td>
 	        	<td id="address_td">
-					<%=ss.getAddress()%>
+					<%
+					String[] arr=ss.getAddress().split(",");
+					int i=0;
+					for(i=0;i<arr.length;i++){
+						out.println(arr[i]+"</br>");
+					}
+					%>
 	        	</td>
 	        	<td id="address_icon">
-	        		<span class="icon-pencil-2" onClick ="edit('address'),icon_change('address');"></span>
 	        	</td>
 	        </tr>
 	    	<tr>
@@ -189,7 +194,6 @@ User ss= (User)session.getAttribute("user");
 	        		<%=ss.getZipcode()%>
 	        	</td>
 	        	<td id="zipcode_icon">
-	        		<span class="icon-pencil-2" onClick ="edit('zipcode'),icon_change('zipcode');"></span>
 	        	</td>
 	        </tr>
 	    </table>

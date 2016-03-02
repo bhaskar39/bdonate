@@ -114,7 +114,7 @@ if(ss==null){
                   <li id="dashboard_li"><a style='border-radius:5px;margin:1px;font-weight: bold;'  class="dropdown-toggle" data-toggle="dropdown"><span class="icon-user"></span> <%=ss.getName() %><span class="caret"></span></a>
                   	         <ul class="dropdown-menu">
                   	         	<li id="dashboard"  onclick="load_page(this.id)" ><a>Dashboard</a></li>
-                  	         	<li><a>View Profile</a></li>
+                  	         	<li id="profile_li"><a id="profile"  onclick="load_page(this.id)">View Profile</a></li>
          						<li id="logout_li" ><a id="logout" onclick="load_page(this.id)">Logout</a></li>
          					</ul>
          				
@@ -129,9 +129,14 @@ if(ss==null){
    <div id="body">
       <div id="myCarousel" class="carousel slide" style="min-height: 500px;max-height: 500px;margin-left:1%;margin-right: 1%" class="row"></div>
 
-   	<div id="test">
-        Context 1
-      </div>
+   	<div id="tes">
+   		<div style="margin-left:3%">
+         <h3>Importance of Blood Donation</h3><br>
+        <p  style="word-wrap:break-word;overflow-wrap: break-word;"  >Blood donation is one of the most significant contribution that a person can make towards the society. It is not harmful for an adult person to donate blood. The body <br><font>of the donor can regenerate the blood within few days. It poses no threat to the metabolism of the body.</font></p>
+         <p style="word-wrap:break-word;overflow-wrap: break-word;" >An ailing body needs blood for various reasons. He may be attacked with anemia, undergone an operation or may meet with an accident. But such a patient may die<br><font> for want of blood as it is not always available. Even a pregnant mother may need blood in case of emergency situation.Blood can be stored for a limited period of time </font><br><font>that is why the blood banks need a steady and constant collection.</font></p>
+      	<p> Blood donation is our human duty. Our body does not get affected if we donate blood. The body can repair the loss within a few days. So we must come forward to <br> <font> donate blood as it can make sure the return of a dying man again into the light of life.</font></p> <br><br>
+      	</div>
+     </div>
     </div>
   
    <div class="footer">

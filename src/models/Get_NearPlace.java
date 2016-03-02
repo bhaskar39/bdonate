@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 public class Get_NearPlace {
 
-	@SuppressWarnings("null")
 	public ArrayList<String> get_NearestPlaces(String lat, String lng, int r) {
 		// TODO Auto-generated method stub
 		ArrayList<String> places= new ArrayList<String>();

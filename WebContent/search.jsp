@@ -65,13 +65,13 @@
 	$(document).ready(function(){  
 	    $('.form-inline').on('submit',function(event){
 	       event.preventDefault();
-	       //data={"blood_group":$("#blood_group").val(),"location":$("#latt").val()+","+$("#long").val()};
-	       data={"blood_group":$("#blood_group").val(),"location":"16.544893,81.521240"};
+	       data={"blood_group":$("#blood_group").val(),"location":$("#latt").val()+","+$("#long").val()};
+	       //data={"blood_group":$("#blood_group").val(),"location":"16.544893,81.521240"};
 	       load_page_post("search_results.jsp","search_results",data) 
 	    });  
 	});
 	
-	function initAutocomplet() {
+	function initAutocomplete() {
 		  // Create the autocomplete object, restricting the search to geographical
 		  // location types.
 		  autocomplete = new google.maps.places.Autocomplete(

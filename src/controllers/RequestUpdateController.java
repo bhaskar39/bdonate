@@ -18,8 +18,9 @@ public class RequestUpdateController extends HttpServlet
          {
 	          String req_id=(String)request.getParameter("reqIdValue");
 	          String email=(String)request.getParameter("emailValue");
+	          String action=(String)request.getParameter("action");
 	          RequestUpdate requestUpdate=new RequestUpdate();
-	          int rowsInserted=requestUpdate.getRequestUpdateObject(req_id,email);
+	          int rowsInserted=requestUpdate.getRequestUpdateObject(req_id,email,action);
 	          RequestDispatcher rd = request.getRequestDispatcher("requestupdate_result.jsp");
 	          if(rowsInserted==0)
 	          {
@@ -27,7 +28,10 @@ public class RequestUpdateController extends HttpServlet
 	          }	          
               else
 	          {
-            	  request.setAttribute("status", "updated");
+            	  if (action.equals("approved")){
+            		  request.setAttribute("status", "updated");
+            		  }
+            	  else request.setAttribute("status", "updat");
 	          }
 	          rd.forward(request, response);
          }

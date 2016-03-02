@@ -18,10 +18,12 @@ width:100%;
 <%
 String name="";
 String available=null;
+String email="";
 try 
  {
 	User profileObject = (User)request.getAttribute("user");
 	name=profileObject.getName();
+	email= (String) profileObject.getEmail();
 	available=(String)profileObject.getAvailability();
  }
 catch(Exception e){}
@@ -30,13 +32,15 @@ catch(Exception e){}
  <h3>Welcome <span class="icon-user"></span> <%=name %></h3></br>
  <div style="margin-left:5%;">
 <table class="table table-hover" style="width:inherit">
-<tr><td>No.of Donations</td>
+<tr  style="color:blue;cursor:pointer;" onclick="load_reports()"><td>No.of Donations</td>
 	<td>:</td><td>10</td>
 </tr>
-<tr>
+<tr >
  	<td>Availability</td><td>:</td><td> <%if(available.equals("true")){%><span class='badge badge-success'>&nbsp;</span><%}else{ %><span class='badge badge-important'>&nbsp;</span><%} %></td>
 </tr>
-<tr><td colspan="3" align="center"><button type="submit">Update Profile</button></td></tr>
+<tr  style="color:blue;cursor:pointer;" onclick="load_activities()">
+	<td>Pending Actions</td><td>:</td><td></td>
+</tr>
  	</table>
 </div>
 <div  style="margin-right:5%;width:100%;" id="suggest_notifications">
@@ -46,6 +50,24 @@ catch(Exception e){}
 $.get("NotificationController",{"bloodGroupValue":"SA+"},function(data){
 	$("#suggest_notification").html(data);
 });
+
+
+function load_reports()
+		{  
+		    
+		   params={"emailValue":"<%=email%>"}; 
+			$.post("ReportController",params,function(data){
+			  		$("#notification_container").html(data); 
+			   	});
+		      
+		}
+function load_activities(){
+	$("#fade_black").fadeIn();
+	params={"email":"<%=email%>"};
+	$.get("NotificationController",params,function(resp){
+		$("#black_container").html(resp);
+	});
+}
 </script>
 </body>
 </html>

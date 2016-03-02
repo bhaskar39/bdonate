@@ -26,7 +26,7 @@ $("#user_menu").load("usermenu.jsp");
 	}
 
 </style>
-<div  style="width:60%;margin-left:10%;display:inline-block">
+<div  style="width:60%;margin-left:10%;display:inline-block" id="notification_container">
 	<h3>Blood Requests <small>(matches to your bloodGroup)</small></h3></br>
 	<div id="divOne"></div>
 </div>

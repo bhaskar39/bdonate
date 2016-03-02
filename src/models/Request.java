@@ -24,11 +24,11 @@ public class Request
 			preparedStatement.setString(8, req.getEmail());
 			preparedStatement.setString(9, req.getHospital());
 			preparedStatement.setString(10, req.getAd());
-			preparedStatement.setString(11, req.getLocation());
 			java.sql.Timestamp ourJavaTimestampObject = new java.sql.Timestamp(calendar.getTime().getTime());
 			preparedStatement.setTimestamp(11, ourJavaTimestampObject);
+			preparedStatement.setString(12, req.getLocation());
 			// execute insert SQL statement
-			int r=1;//preparedStatement.executeUpdate();
+			int r=preparedStatement.executeUpdate();
 			if (r==1)
 				return "success";
 			con.close();

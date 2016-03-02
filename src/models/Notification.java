@@ -3,12 +3,12 @@ package models;
 import java.sql.*;
 import java.util.ArrayList;
 
-import bos.NotificationObjects;
 import bos.Requestobj;
 
 public class Notification 
 {
-  public ArrayList<Requestobj> getNotificationsList(String bloodGroup)
+	
+  public ArrayList<Requestobj> getNotificationsList(String bloodGroup,String email,String email1)
   {
 	Requestobj[] arrayOfNotificationsObjects=new Requestobj[10];
 	ArrayList<Requestobj> objects = new ArrayList<Requestobj>();
@@ -16,14 +16,29 @@ public class Notification
 	 {
    		DataSource_Connector dts = new DataSource_Connector("root", "pass");
    		java.sql.Connection con = dts.Access_DataSource();
-   		String stm = "select * from blood_requests where BLOOD_GROUP=?";
-   		if(bloodGroup.charAt(0)=='S'){
+   		String stm = "";
+   		ResultSet rs;
+   		PreparedStatement pstmt=null;
+        
+   		if (email1!=null){
+   			stm="select * from blood_requests where blood_requests.blood_group=? and blood_requests.req_id not in (select blood_requests.req_id from blood_requests,transactions where transactions.req_id=blood_requests.req_id and transactions.email=?)";
+   			pstmt= con.prepareStatement(stm);
+   			pstmt.setString(1,bloodGroup);
+   			pstmt.setString(2, email1);
+   		}
+   		if(email==null && bloodGroup.charAt(0)=='S'){
    			stm = "select * from blood_requests where BLOOD_GROUP!=?";
    			bloodGroup=bloodGroup.substring(1, bloodGroup.length());
+   			pstmt= con.prepareStatement(stm);
+   			pstmt.setString(1,bloodGroup);
    		}
-        PreparedStatement pstmt = con.prepareStatement(stm);
-        pstmt.setString(1,bloodGroup);
-   		ResultSet rs=pstmt.executeQuery(); 
+   		if (email!=null){
+   			stm="select blood_requests.* from blood_requests,transactions where transactions.email=? and blood_requests.req_id=transactions.req_id and transactions.action='approved'";
+   			pstmt= con.prepareStatement(stm);
+   			pstmt.setString(1,email);
+   		}
+        
+   		rs=pstmt.executeQuery(); 
    	    int index=0;
    	    
    		while(rs.next())

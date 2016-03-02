@@ -23,7 +23,7 @@ public class Search_Results {
 		}
 		else
 			sql_stmnt="SELECT * FROM USERS WHERE (location LIKE ? OR zipcode LIKE ?) AND bloodgroup='"+blood_group+"'";
-			//System.out.println(sql_stmnt);
+//			System.out.println(sql_stmnt);
 		try {
 			PreparedStatement pst = con.prepareStatement(sql_stmnt);
 			pst.setString(1, "%"+location+"%");

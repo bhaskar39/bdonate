@@ -14,6 +14,7 @@ cursor:pointer;
 
 <%
 User user = (User)session.getAttribute("user");
+String email1= user.getEmail();
 //Requestobj[] objects=null;
    try 
      {
@@ -30,11 +31,11 @@ User user = (User)session.getAttribute("user");
 	    	String hs = objects.getHospital();
 	    	String dt = objects.getDate();
 	    	int req_id = objects.getReq_id();
-	    	String value= name+","+bg+","+un+","+bp+","+ph+","+hs+","+dt+","+req_id+","+objects.getEmail();
+	    	String value= name+"$"+bg+"$"+un+"$"+bp+"$"+ph+"$"+hs+"$"+dt+"$"+req_id+"$"+objects.getEmail();
 	    	if (i%2==0){
 	    		
 %>
-        <blockquote>
+        <blockquote id="b<%=i%>">
            <p  onclick="display_request(this.id)" id="req<%=i%>"><input type="text" style="display:none" id="data<%=i %>" value="<%=value %>" /><%=objects.getPatientname()%> requires <%=objects.getUnits()%> units of <%=objects.getBloodgroup()%> <%=objects.getBorp() %></p>
            <small><%=objects.getHospital()%> <%=objects.getDate()%></small>
         </blockquote>
@@ -42,7 +43,7 @@ User user = (User)session.getAttribute("user");
 <%
 	    	}
 	    	else{%>
-	    	<blockquote style="border-left:0px;border-right:5px solid #0177DB">
+	    	<blockquote style="border-left:0px;border-right:5px solid #0177DB" id="b<%=i%>">
            	<p  onclick="display_request(this.id)" id="req<%=i%>"><input type="text" style="display:none" id="data<%=i %>" value="<%=value %>"><%=objects.getPatientname()%> requires <%=objects.getUnits()%> units of <%=objects.getBloodgroup()%> <%=objects.getBorp() %></p>
            <small><%=objects.getHospital()%> <%=objects.getDate()%></small>
         </blockquote>
@@ -61,9 +62,10 @@ catch(Exception e)
 function display_request(ob){
 	$("#fade_black").fadeIn();
 	valu=$('#data'+ob[3]).val();
-	valu=valu.split(",");
+	
+	valu=valu.split("$");
 	resp="<div>";
-	resp+="<span class='pull-right icon-cross' onclick='$("+'"#fade_black"'+").hide()' style='cursor:pointer;color:rgb(165, 39, 19)'></span>"
+	resp+="<span class='pull-right icon-cross' onclick='refresh_dashboard()' style='cursor:pointer;color:rgb(165, 39, 19)'></span>"
 	resp+="<h3 style='text-decoration:underline dotted;' align='center'>Blood Request Details</h3></br>";
 	resp+="<table class='table table-hover table-bordered table-striped'  style='width:70%;margin-left:auto;margin-right:auto;'>";
 	resp+="<tr><td>Request ID</td><td>req_"+valu[7]+"</td></tr>";
@@ -78,10 +80,17 @@ function display_request(ob){
 	$("#black_container").html(resp);
 }
 function accept(id){
-	params={"reqIdValue":id[1],"emailValue":valu[8]};
+	ii=id.substring(1,id.length);
+	params={"reqIdValue":ii,"emailValue":"<%=email1%>","action":"approved"};
 	$.post("RequestUpdateController",params,function(data)
    	{
-  		$("#rr"+id[1]).html(data); 
+  		$("#rr"+ii).html(data); 
     });
+	
+}
+function refresh_dashboard()
+{
+	$("#fade_black").hide();
+	$("#body").load("dashboard.jsp");
 }
 </script>

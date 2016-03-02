@@ -16,6 +16,9 @@ public class BloodRequest extends HttpServlet {
 		String bloodgroup = request.getParameter("bgroup");
 		String units = request.getParameter("units");
 		String date = request.getParameter("date");
+		String[] dk = date.split("-");
+		date=dk[2]+"-"+dk[1]+"-"+dk[0];
+		System.out.println(date);
 		String borp = request.getParameter("b/p");
 		String hospital = request.getParameter("hospital");
 		String phone = request.getParameter("phone");
@@ -25,6 +28,7 @@ public class BloodRequest extends HttpServlet {
 		Requestobj req = new Requestobj(patientname, username,bloodgroup,units,date,borp,hospital,phone,email,ad,lo);
 		Request Request2 = new Request();
 		String res=Request2.recard_Request(req);
+		System.out.println(ad);
 		RequestDispatcher rd = request.getRequestDispatcher("req_result.jsp");
 		if (res.equals("success")){
 			request.setAttribute("req_obj", req);

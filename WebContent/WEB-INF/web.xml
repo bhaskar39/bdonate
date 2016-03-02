@@ -5,14 +5,22 @@
  
   
   <servlet>
-    <servlet-name>ProfileController</servlet-name>
-    <servlet-class>controllers.ProfileController</servlet-class>
+    <servlet-name>ChangeProfileController</servlet-name>
+    <servlet-class>controllers.ChangeProfileController</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>ProfileController</servlet-name>
-    <url-pattern>/ProfileController</url-pattern>
+    <servlet-name>ChangeProfileController</servlet-name>
+    <url-pattern>/ChangeProfileController</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>Approved_Records_Controller</servlet-name>
+    <servlet-class>controllers.Approved_Records_Controller</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Approved_Records_Controller</servlet-name>
+    <url-pattern>/Approved_Records_Controller</url-pattern>
+  </servlet-mapping>
   
   
    <servlet>
@@ -83,6 +91,16 @@
 
 
 <!--  Ganga -->
+<servlet>
+    <servlet-name>RemindController</servlet-name>
+    <servlet-class>controllers.RemindController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RemindController</servlet-name>
+    <url-pattern>/RemindController</url-pattern>
+  </servlet-mapping>
+
+
   <servlet>
     <servlet-name>NotificationController</servlet-name>
     <servlet-class>controllers.NotificationController</servlet-class>
@@ -100,6 +118,16 @@
     <servlet-name>RequestUpdateController</servlet-name>
     <url-pattern>/RequestUpdateController</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>ReportController</servlet-name>
+    <servlet-class>controllers.ReportController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReportController</servlet-name>
+    <url-pattern>/ReportController</url-pattern>
+  </servlet-mapping>
+  
 <!--  Ganga -->
 
   
